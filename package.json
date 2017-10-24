@@ -1,0 +1,7 @@
+{"name": "LevelUP2017 ",
+    "dependencies": { 
+        "jasmine-data-provider": "^2.2.0",
+        "webdriver-manager":"12.0.6",
+        "protractor": "5.2.0"
+    } 
+}
