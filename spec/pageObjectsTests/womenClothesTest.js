@@ -22,6 +22,9 @@ var BasketPage = require(pageObjectDir + "/basketPage.js");
 
 var basketPage = new BasketPage();
 
+var blouseName;
+
+var price;
 
 describe('check womenClothesPage', function () {
     it('check if homePage loaded', function () {
@@ -52,6 +55,8 @@ describe('check womenClothesPage', function () {
             });
         }
         isLabelLongerThan(8).then(console.log)
+        blouseName = fadedShortSleevePage.fadedShortSleeveTitle.getText();
+        price = fadedShortSleevePage.fadedShortSleevePrise.getText();
     });
 
     it('open topsPage', function () {
@@ -64,50 +69,31 @@ describe('check womenClothesPage', function () {
         expect(fadedShortSleevePage.submitButton.getText()).toEqual("Add to cart");
         fadedShortSleevePage.submitButton.click();
     });
-    //expect(afterBuyPage.productAddedLabel.getText())
-    //.toBe("Product successfully added to your shopping cart");
 
-
-
-    // it('open topsPage', function () {
-    //     expect(afterBuyPage.totalLabel.isDisplayed()).toBe(true);
-    //    // expect(afterBuyPage.totalLabel.getText()).toEqual("4");
-    // });
-
-    // it('open topsPage', function () {
-    //     expect(afterBuyPage.totalLabel.isDisplayed()).toBe(true);
-    //    // expect(afterBuyPage.totalLabel.getText()).toEqual("4");
-    // });
 
     it('load homePage', function () {
         browser.get(homePage.URL);
         expect(browser.getTitle())
             .toEqual("My Store");
-        console.log("czy wydrukowalo 1");
     });
 
     it('click cartButton', function () {
         homePage.cartButton.click();
         expect(browser.getTitle())
             .toEqual("Order - My Store");
-        console.log("czy wydrukowalo 2");
     });
 
     it('check if product added to cart', function () {
-        expect(basketPage.xyz.getText())
-        .toEqual("Product");
-        
-        // browser.wait(function() {
-        //     return element(by.css("#product_1_1_0_0 > td.cart_description > p > a")).isPresent()});             
-        // expect(basketPage.productLabel.getText())
-        //     .toEqual("Faded Short Sleeve T-shirts");
-        // console.log("czy wydrukowalo 3");
-
-    });
-
-    it('check if product added to cart', function () {
+        basketPage.productLabel.isDisplayed();
         expect(basketPage.productLabel.getText())
-        .toEqual("Faded Short Sleeve T-shirts");
+            .toEqual(blouseName);
+
     });
 
+    it('check total prise', function () {
+        basketPage.productPrise.isDisplayed();
+        expect(basketPage.productPrise.getText())
+            .toEqual(price);
+
+    });
 });
