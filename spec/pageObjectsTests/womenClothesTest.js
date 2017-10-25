@@ -94,12 +94,20 @@ describe('check womenClothesPage', function () {
     });
 
     it('check if product added to cart', function () {
-        browser.wait(function() {
-            return element(by.css("#product_1_1_0_0 > td.cart_description > p > a")).isPresent()});             
-        expect(basketPage.productLabel.getText())
-            .toEqual("Faded Short Sleeve T-shirts");
-        console.log("czy wydrukowalo 3");
+        expect(basketPage.xyz.getText())
+        .toEqual("Product");
+        
+        // browser.wait(function() {
+        //     return element(by.css("#product_1_1_0_0 > td.cart_description > p > a")).isPresent()});             
+        // expect(basketPage.productLabel.getText())
+        //     .toEqual("Faded Short Sleeve T-shirts");
+        // console.log("czy wydrukowalo 3");
 
+    });
+
+    it('check if product added to cart', function () {
+        expect(basketPage.productLabel.getText())
+        .toEqual("Faded Short Sleeve T-shirts");
     });
 
 });
