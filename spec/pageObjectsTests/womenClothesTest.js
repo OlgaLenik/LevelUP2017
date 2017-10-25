@@ -6,21 +6,44 @@ var WomenPage = require(pageObjectDir + "/womenPage.js");
 
 var womenPage = new WomenPage();
 
-//jak sprawdzic czy strna zaladowana
+var TopsPage = require(pageObjectDir + "/topsPage.js");
+
+var topsPage = new TopsPage();
+
+var FadedShortSleevePage = require(pageObjectDir + "/fadedShortSleevePage.js");
+
+var fadedShortSleevePage = new FadedShortSleevePage();
+
+
+
+
 describe('check womenClothesPage', function () {
     it('check if homePage loaded', function () {
         browser.get(homePage.URL);
-        expect( homePage.title.getText() )
-        .toEqual('');
+        expect(browser.getTitle())
+        .toEqual("My Store");
     });
 
     it('open womenPage', function () {
-        browser.click(womenButton);
-        browser.findElement(By.css('#contact-link')).click();
+        homePage.womenButton.click();
         expect(browser.getTitle())
-        .toEqual("Contact us - My Store");
+        .toEqual("Women - My Store");
     });
 
+    it('open topsPage', function () {
+        womenPage.topsPageButton.click();
+        expect(browser.getTitle())
+        .toEqual("Tops - My Store");
+    });
     
-});
+  
+
+    it('open ded Short Sleeve Page', function () {
+        topsPage.fadedShortSleeveButton.click();
+        //dokonczyc
+        });
+    });
+
+
+
  
