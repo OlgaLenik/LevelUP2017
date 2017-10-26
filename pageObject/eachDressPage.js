@@ -1,6 +1,5 @@
 var EachDressPage = function EachDressPage () {
-    
-    this.cssSelectorOfProductName = $('#center_column > div > div > div.pb-center-column.col-xs-12.col-sm-4 > h1');
+    this.cssSelectorOfProductName = $('#center_column h1');
     this.cssSelectorOfPrice = $('#our_price_display');
     this.nameOfDress1 = 'Printed Dress';
     this.nameOfDress2 = 'Printed Summer Dress';

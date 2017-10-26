@@ -1,99 +1,93 @@
-// var HomePage = require(pageObjectDir + "/homePage.js");
+var HomePage = require(pageObjectDir + "/homePage.js");
 
-// var homePage = new HomePage();
+var homePage = new HomePage();
 
-// var WomenPage = require(pageObjectDir + "/womenPage.js");
+var WomenPage = require(pageObjectDir + "/womenPage.js");
 
-// var womenPage = new WomenPage();
+var womenPage = new WomenPage();
 
-// var TopsPage = require(pageObjectDir + "/topsPage.js");
+var TopsPage = require(pageObjectDir + "/topsPage.js");
 
-// var topsPage = new TopsPage();
+var topsPage = new TopsPage();
 
-// var FadedShortSleevePage = require(pageObjectDir + "/fadedShortSleevePage.js");
+var FadedShortSleevePage = require(pageObjectDir + "/fadedShortSleevePage.js");
 
-// var fadedShortSleevePage = new FadedShortSleevePage();
+var fadedShortSleevePage = new FadedShortSleevePage();
 
-// var AfterBuyPage = require(pageObjectDir + "/afterBuyPage.js");
+var BasketPage = require(pageObjectDir + "/basketPage.js");
 
-// var afterBuyPage = new AfterBuyPage();
+var basketPage = new BasketPage();
 
-// var BasketPage = require(pageObjectDir + "/basketPage.js");
+var blouseName;
 
-// var basketPage = new BasketPage();
+var price;
 
-// var blouseName;
+describe('test womenClothesPage', function () {
+    
+    it('open homePage', function () {
+        browser.get(homePage.URL);
+        expect(browser.getTitle())
+            .toEqual("My Store");
+    });
 
-// var price;
+    it('open womenPage', function () {
+        homePage.womenButton.click();
+        expect(browser.getTitle())
+            .toEqual("Women - My Store");
+    });
 
-// describe('check womenClothesPage', function () {
-//     it('check if homePage loaded', function () {
-//         browser.get(homePage.URL);
-//         expect(browser.getTitle())
-//             .toEqual("My Store");
-//     });
+    it('open topsPage', function () {
+        womenPage.topsPageButton.click();
+        expect(browser.getTitle())
+            .toEqual("Tops - My Store");
+    });
 
-//     it('open womenPage', function () {
-//         homePage.womenButton.click();
-//         expect(browser.getTitle())
-//             .toEqual("Women - My Store");
-//     });
+    it('verify if Faded Short Sleeve T-shirt name longer than 8 letters', function () {
+        topsPage.fadedShortSleeveButton.click();
+        var isLabelLongerThan = function (isLongerThan) {
+            return new Promise(function (resolve) {
+                fadedShortSleevePage.fadedShortSleeveTitle.getText().then(function (text) {
+                    expect(text.length).toBeGreaterThan(isLongerThan);
+                })
+            });
+        }
+        isLabelLongerThan(8).then(console.log)
+        blouseName = fadedShortSleevePage.fadedShortSleeveTitle.getText();
+        price = fadedShortSleevePage.fadedShortSleevePrise.getText();
+    });
 
-//     it('open topsPage', function () {
-//         womenPage.topsPageButton.click();
-//         expect(browser.getTitle())
-//             .toEqual("Tops - My Store");
-//     });
+    it('verify if Faded Short Sleeve T-shirt condition is new', function () {
+        expect(fadedShortSleevePage.fadedShortSleeveConditionLabel.getText())
+            .toEqual("New");
+    });
 
-//     it('open ded Short Sleeve Page', function () {
-//         topsPage.fadedShortSleeveButton.click();
-//         var isLabelLongerThan = function (isLongerThan) {
-//             return new Promise(function (resolve) {
-//                 fadedShortSleevePage.fadedShortSleeveTitle.getText().then(function (text) {
-//                     expect(text.length).toBeGreaterThan(isLongerThan);
-//                 })
-//             });
-//         }
-//         isLabelLongerThan(8).then(console.log)
-//         blouseName = fadedShortSleevePage.fadedShortSleeveTitle.getText();
-//         price = fadedShortSleevePage.fadedShortSleevePrise.getText();
-//     });
+    it('add to cart Faded Short Sleeve T-shirt Size M', function () {
+        fadedShortSleevePage.sizeDropDown.click();
+        expect(fadedShortSleevePage.submitButton.getText()).toEqual("Add to cart");
+        fadedShortSleevePage.submitButton.click();
+    });
 
-//     it('open topsPage', function () {
-//         expect(fadedShortSleevePage.fadedShortSleeveConditionLabel.getText())
-//             .toEqual("New");
-//     });
+    it('load homePage', function () {
+        browser.get(homePage.URL);
+        expect(browser.getTitle())
+            .toEqual("My Store");
+    });
 
-//     it('it choose size and clikck submitButton', function () {
-//         fadedShortSleevePage.sizeDropDown.click();
-//         expect(fadedShortSleevePage.submitButton.getText()).toEqual("Add to cart");
-//         fadedShortSleevePage.submitButton.click();
-//     });
+    it('click cartButton', function () {
+        homePage.cartButton.click();
+        expect(browser.getTitle())
+            .toEqual("Order - My Store");
+    });
 
+    it('check if Faded Short Sleeve T-shirt Size M added to cart', function () {
+        basketPage.productLabel.isDisplayed();
+        expect(basketPage.productLabel.getText())
+            .toEqual(blouseName);
+    });
 
-//     it('load homePage', function () {
-//         browser.get(homePage.URL);
-//         expect(browser.getTitle())
-//             .toEqual("My Store");
-//     });
-
-//     it('click cartButton', function () {
-//         homePage.cartButton.click();
-//         expect(browser.getTitle())
-//             .toEqual("Order - My Store");
-//     });
-
-//     it('check if product added to cart', function () {
-//         basketPage.productLabel.isDisplayed();
-//         expect(basketPage.productLabel.getText())
-//             .toEqual(blouseName);
-
-//     });
-
-//     it('check total prise', function () {
-//         basketPage.productPrise.isDisplayed();
-//         expect(basketPage.productPrise.getText())
-//             .toEqual(price);
-
-//     });
-// });
+    it('check total price at cart', function () {
+        basketPage.productPrise.isDisplayed();
+        expect(basketPage.productPrise.getText())
+            .toEqual(price);
+    });
+});
