@@ -1,86 +1,93 @@
-// var HomePage = require(pageObjectDir + "/homePage.js");
+var HomePage = require(pageObjectDir + "/homePage.js");
 
-// var homePage = new HomePage();
+var homePage = new HomePage();
+
+var DressesPage = require(pageObjectDir + "/dressesPage.js");
+
+var dressesPage = new DressesPage();
+
+var EachDressPage = require(pageObjectDir + "/eachDressPage.js");
+
+var eachDressPage = new EachDressPage();
+
+var data = {
+    "PrintedDress": {
+        'cssSelector': "cssSelectorDressNo1",
+        'cssSelectorOfProductName': 'cssSelectorOfProductName',
+        'cssSelectorOfPrice': 'cssSelectorOfPrice',
+        "title": "titleOfDress1",
+        "value": "nameOfDress1",
+        "price": "priceOfDress1"
+
+    },
+
+    "PrintedDressNo2": {
+        'cssSelector': "cssSelectorDressNo2",
+        'cssSelectorOfProductName': 'cssSelectorOfProductName',
+        'cssSelectorOfPrice': 'cssSelectorOfPrice',
+        "title": "titleOfDress1",
+        "value": "nameOfDress1",
+        "price": "priceOfDress2"
+    },
+
+    "PrintedSummerDress": {
+        'cssSelector': "cssSelectorDressNo3",
+        'cssSelectorOfProductName': 'cssSelectorOfProductName',
+        'cssSelectorOfPrice': 'cssSelectorOfPrice',
+        "title": "titleOfDress2",
+        "value": "nameOfDress2",
+        "price": "priceOfDress3"
+    },
+
+    "PrintedSummerDressNo2": {
+        'cssSelector': "cssSelectorDressNo4",
+        'cssSelectorOfProductName': 'cssSelectorOfProductName',
+        'cssSelectorOfPrice': 'cssSelectorOfPrice',
+        "title": "titleOfDress2",
+        "value": "nameOfDress2",
+        "price": "priceOfDress4"
+    },
+
+    "PrintedChiffonDress": {
+        'cssSelector': "cssSelectorDressNo5",
+        'cssSelectorOfProductName': 'cssSelectorOfProductName',
+        'cssSelectorOfPrice': 'cssSelectorOfPrice',
+        "title": "titleOfDress3",
+        "value": "nameOfDress3",
+        "price": "priceOfDress5"
+    },
+}
 
 
-// var data = {
-//     "Printed Dress": {
-//         'cssSelector': '#center_column > ul > li:nth-child(1) > div > div.right-block > h5 > a',
-//         'cssSelectorOfProductName': '#center_column > div > div > div.pb-center-column.col-xs-12.col-sm-4 > h1',
-//         'cssSelectorOfPrice': '#our_price_display',
-//         "title": "Printed Dress - My Store",
-//         "value": "Printed Dress",
-//         "price": "$26.00"
-        
-//     },
+using(data, function (element) {
+    describe('Protractor Demo App element' + element, function () {
 
-//     "Printed Dress No 2": {
-//         'cssSelector': '#center_column > ul > li:nth-child(2) > div > div.right-block > h5 > a',
-//         'cssSelectorOfProductName': '#center_column > div > div > div.pb-center-column.col-xs-12.col-sm-4 > h1',
-//         'cssSelectorOfPrice': '#our_price_display',
-//         "title": "Printed Dress - My Store",
-//         "value": "Printed Dress",
-//         "price": "$50.99"
-//     },
+        it('check if homePage loaded', function () {
+            browser.get(homePage.URL);
+            expect(browser.getTitle())
+                .toEqual("My Store");
+        });
 
-//     "Printed Summer Dress": {
-//         'cssSelector': '#center_column > ul > li:nth-child(3) > div > div.right-block > h5 > a',
-//         'cssSelectorOfProductName': '#center_column > div > div > div.pb-center-column.col-xs-12.col-sm-4 > h1',
-//         'cssSelectorOfPrice': '#our_price_display',
-//         "title": "Printed Summer Dress - My Store",
-//         "value": "Printed Summer Dress",
-//         "price": "$28.98"
-//     },
+        it('open dressesPage', function () {
+            homePage.dressesButton.click();
+            expect(browser.getTitle())
+                .toEqual("Dresses - My Store");
+        });
 
-//     "Printed Summer Dress": {
-//         'cssSelector': '#center_column > ul > li:nth-child(4) > div > div.right-block > h5 > a',
-//         'cssSelectorOfProductName': '#center_column > div > div > div.pb-center-column.col-xs-12.col-sm-4 > h1',
-//         'cssSelectorOfPrice': '#our_price_display',
-//         "title": "Printed Summer Dress - My Store",
-//         "value": "Printed Summer Dress",
-//         "price": "$30.50"
-//     },
+        it('check name and price of product', function () {
+            browser.waitForAngularEnabled(false);
+            dressesPage[element.cssSelector].click();
 
-//     "Printed Chiffon Dress": {
-//         'cssSelector': '#center_column > ul > li:nth-child(5) > div > div.right-block > h5 > a',
-//         'cssSelectorOfProductName': '#center_column > div > div > div.pb-center-column.col-xs-12.col-sm-4 > h1',
-//         'cssSelectorOfPrice': '#our_price_display',
-//         "title": "Printed Chiffon Dress - My Store",
-//         "value": "Printed Chiffon Dress",
-//         "price": "$16.40"
-//     },
+            expect(browser.getTitle())
+                .toEqual(eachDressPage[element.title]);
 
-// }
+            expect(eachDressPage[element.cssSelectorOfProductName]
+                .getText())
+                .toEqual(eachDressPage[element.value]);
 
-// using(data, function (element) {
-//     describe('Protractor Demo App element' + element, function () {
-
-//         it('check if homePage loaded', function () {
-//             browser.get(homePage.URL);
-//             expect(browser.getTitle())
-//                 .toEqual("My Store");
-//         });
-
-//         it('open dressesPage', function () {
-//             homePage.dressesButton.click();
-//             expect(browser.getTitle())
-//                 .toEqual("Dresses - My Store");
-//         });
-
-//         it('check name of product', function () {
-//             browser.waitForAngularEnabled(false);
-//             browser.findElement(By.css(element.cssSelector)).click();
-
-//             expect(browser.getTitle())
-//             .toEqual(element.title);
-
-//             expect(browser.findElement(By.css(element.cssSelectorOfProductName))
-//                 .getText())
-//                 .toEqual(element.value);
-
-//             expect(browser.findElement(By.css(element.cssSelectorOfPrice))
-//                 .getText())
-//                 .toEqual(element.price);
-//         });
-//     })
-// });
+            expect(eachDressPage[element.cssSelectorOfPrice]
+                .getText())
+                .toEqual(eachDressPage[element.price]);
+        });
+    })
+});
