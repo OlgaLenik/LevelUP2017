@@ -22,7 +22,7 @@ var blouseName;
 
 var price;
 
-describe('test womenClothesPage', function () {
+describe('test adding product Faded Short Sleeve T-shirt to cart', function () {
     
     it('open homePage', function () {
         browser.get(homePage.URL);
