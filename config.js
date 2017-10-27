@@ -30,7 +30,7 @@ showColors: true, // Use colors in the command line report.
 
 onPrepare:function(){
     global.using=using;
-    global.ignoreSynchronization = true;
+    browser.ignoreSynchronization = true;
     global.pageObjectDir = __dirname+"/pageObject";
 },
 };

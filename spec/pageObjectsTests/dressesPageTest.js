@@ -15,45 +15,45 @@ var data = {
         'cssSelector': "cssSelectorDressNo1",
         'cssSelectorOfProductName': 'cssSelectorOfProductName',
         'cssSelectorOfPrice': 'cssSelectorOfPrice',
-        "title": "titleOfDress1",
-        "value": "nameOfDress1",
-        "price": "priceOfDress1"
+        "title": "Printed Dress - My Store",
+        "value": "Printed Dress",
+        "price": "$26.00"
     },
 
     "PrintedDressNo2": {
         'cssSelector': "cssSelectorDressNo2",
         'cssSelectorOfProductName': 'cssSelectorOfProductName',
         'cssSelectorOfPrice': 'cssSelectorOfPrice',
-        "title": "titleOfDress1",
-        "value": "nameOfDress1",
-        "price": "priceOfDress2"
+        "title": "Printed Dress - My Store",
+        "value": "Printed Dress",
+        "price": "$50.99"
     },
 
     "PrintedSummerDress": {
         'cssSelector': "cssSelectorDressNo3",
         'cssSelectorOfProductName': 'cssSelectorOfProductName',
         'cssSelectorOfPrice': 'cssSelectorOfPrice',
-        "title": "titleOfDress2",
-        "value": "nameOfDress2",
-        "price": "priceOfDress3"
+        "title": "Printed Summer Dress - My Store",
+        "value": "Printed Summer Dress",
+        "price": "$28.98"
     },
 
     "PrintedSummerDressNo2": {
         'cssSelector': "cssSelectorDressNo4",
         'cssSelectorOfProductName': 'cssSelectorOfProductName',
         'cssSelectorOfPrice': 'cssSelectorOfPrice',
-        "title": "titleOfDress2",
-        "value": "nameOfDress2",
-        "price": "priceOfDress4"
+        "title": "Printed Summer Dress - My Store",
+        "value": "Printed Summer Dress",
+        "price": "$30.50"
     },
 
     "PrintedChiffonDress": {
         'cssSelector': "cssSelectorDressNo5",
         'cssSelectorOfProductName': 'cssSelectorOfProductName',
         'cssSelectorOfPrice': 'cssSelectorOfPrice',
-        "title": "titleOfDress3",
-        "value": "nameOfDress3",
-        "price": "priceOfDress5"
+        "title": "Printed Chiffon Dress - My Store",
+        "value": "Printed Chiffon Dress",
+        "price": "$16.40"
     },
 }
 
