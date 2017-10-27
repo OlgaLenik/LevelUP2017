@@ -9,3 +9,18 @@ var HomePage = function HomePage () {
 }
 
 module.exports = HomePage;
+
+HomePage.prototype.clickWomanPageButton = function (){
+    var that = this;
+    this.womenButton.click();
+} 
+
+HomePage.prototype.clickCartButton = function (){
+    var that = this;
+    this.cartButton.click();
+} 
+
+HomePage.prototype.clickDressesButton = function (){
+    var that = this;
+    this.dressesButton.click();
+} 

@@ -31,27 +31,20 @@ describe('test adding product Faded Short Sleeve T-shirt to cart', function () {
     });
 
     it('open womenPage', function () {
-        homePage.womenButton.click();
+        homePage.clickWomanPageButton();
         expect(browser.getTitle())
             .toEqual("Women - My Store");
     });
 
     it('open topsPage', function () {
-        womenPage.topsPageButton.click();
+        womenPage.clickTopsPageButton();
         expect(browser.getTitle())
             .toEqual("Tops - My Store");
     });
 
     it('verify if Faded Short Sleeve T-shirt name longer than 8 letters', function () {
-        topsPage.fadedShortSleeveButton.click();
-        var isLabelLongerThan = function (isLongerThan) {
-            return new Promise(function (resolve) {
-                fadedShortSleevePage.fadedShortSleeveTitle.getText().then(function (text) {
-                    expect(text.length).toBeGreaterThan(isLongerThan);
-                })
-            });
-        }
-        isLabelLongerThan(8).then(console.log)
+        topsPage.clickFadedShortSleeveButton();
+        expect(fadedShortSleevePage.isLabelLongerThan(8)).toBeTruthy();
         blouseName = fadedShortSleevePage.fadedShortSleeveTitle.getText();
         price = fadedShortSleevePage.fadedShortSleevePrise.getText();
     });
@@ -62,9 +55,9 @@ describe('test adding product Faded Short Sleeve T-shirt to cart', function () {
     });
 
     it('add to cart Faded Short Sleeve T-shirt Size M', function () {
-        fadedShortSleevePage.sizeDropDown.click();
+        fadedShortSleevePage.clickSizeDropDown();
         expect(fadedShortSleevePage.submitButton.getText()).toEqual("Add to cart");
-        fadedShortSleevePage.submitButton.click();
+        fadedShortSleevePage.clickSubmitButton();
     });
 
     it('load homePage', function () {
@@ -74,19 +67,17 @@ describe('test adding product Faded Short Sleeve T-shirt to cart', function () {
     });
 
     it('click cartButton', function () {
-        homePage.cartButton.click();
+        homePage.clickCartButton();
         expect(browser.getTitle())
             .toEqual("Order - My Store");
     });
 
     it('check if Faded Short Sleeve T-shirt Size M added to cart', function () {
-        basketPage.productLabel.isDisplayed();
         expect(basketPage.productLabel.getText())
             .toEqual(blouseName);
     });
 
     it('check total price at cart', function () {
-        basketPage.productPrise.isDisplayed();
         expect(basketPage.productPrise.getText())
             .toEqual(price);
     });

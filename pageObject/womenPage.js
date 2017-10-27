@@ -3,3 +3,8 @@ var WomenPage = function WomenPage () {
 }
 
 module.exports = WomenPage;
+
+WomenPage.prototype.clickTopsPageButton = function (){
+    var that = this;
+    this.topsPageButton.click();
+} 

@@ -18,7 +18,6 @@ var data = {
         "title": "titleOfDress1",
         "value": "nameOfDress1",
         "price": "priceOfDress1"
-
     },
 
     "PrintedDressNo2": {
@@ -68,7 +67,7 @@ using(data, function (element) {
         });
 
         it('open dressesPage', function () {
-            homePage.dressesButton.click();
+            homePage.clickDressesButton();
             expect(browser.getTitle())
                 .toEqual("Dresses - My Store");
         });
